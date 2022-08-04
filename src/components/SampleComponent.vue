@@ -1,43 +1,32 @@
 <template>
-<ul>
-  <li v-for="(color, key) in colors" :key="color.id">
-    {{ key }} : {{ color.name }}
-  </li>
-</ul>
-<button @click="onClick">Click</button>
-<p>{{ now }}</p>
+  <p>{{ state.text }}</p>
+  <p>{{ state.number + 1 }}</p>
+  <p>{{ state.text.split('').reverse().join('') }}</p>
+  <p>{{ state.bool ? 'YES' : 'NO' }}</p>
+
+  <!-- <p>{{ const x = 1 }}</p> -->
+  <p>{{ state.bool ? state.text : '' }}</p>
 </template>
 <script>
-// import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 
 export default {
-  setup () {
-    const colors = [
-      {
-        id: 1,
-        name: 'red'
-      }, 
-      {
-        id: 2,
-        name: 'blue'
-      },
-      {
-        id: 3,
-        name: 'green'
-      }
-    ]
+    name: "SampleComponent",
+    setup() {
+      const state = reactive({
+        text: "message",
+        number: 0,
+        bool: false
+      });
 
-    const now = '-'
-  
-    return {
-      colors,
-      now
-    }
-  }
+      return {
+        state
+      };
+    },
 }
 </script>
 <style>
-  p {
-    color: red;
+  [v-cloak] {
+    display: none;
   }
 </style>
